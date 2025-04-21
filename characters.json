@@ -1,0 +1,16 @@
+{
+  "170270229295792128": {
+    "name": "Ylva Rotgut",
+    "strength": 12,
+    "agility": 14,
+    "presence": 7,
+    "toughness": 12,
+    "hp": 6,
+    "silver": 70,
+    "items": [
+      "Short bow",
+      "Torn rations",
+      "Tattered robes"
+    ]
+  }
+}
