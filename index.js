@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { DiceRoll } = require('rpg-dice-roller');
+const { EmbedBuilder } = require('discord.js');
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 
@@ -43,6 +44,39 @@ client.on('messageCreate', message => {
   if (message.author.bot) return;
 
   const content = message.content.trim();
+
+  // Basic help response
+  /*if (content === '!help') {
+    message.reply(`Here is the help message:
+      !help : returns the diffrent messages the bot can receive
+      !ping : check if the bot is online
+      !roll : try something like !roll 1d20+2 to roll a dice and modifier
+      !createcharacter : generate a character
+      !sheet : check current character sheet for your account
+      !dr : dice roll for a test. Add a stat like !dr str to test an ability  
+    `);
+  }*/
+
+  // Embed !help response
+  if (content === '!help') {
+    const helpEmbed = new EmbedBuilder()
+      .setColor(0x3498db)
+      .setTitle('📘 Bot Command Guide')
+      .setDescription('Here’s what I can do. Use wisely, traveler.')
+      .addFields(
+        { name: '🎲 Dice Rolls', value: '`!roll 1d20+2` — Roll a die with a modifier\n`!dr str` — Ability test roll' },
+        { name: '🧙 Character Tools', value: '`!createcharacter` — Generate a new character\n`!sheet` — View your character sheet' },
+        { name: '🔧 Utility', value: '`!help` — Show this help message\n`!ping` — Check if the bot is online' }
+      )
+
+      //.setFooter({ text: 'TTRPG Bot • Type wisely, adventurer 🗺️' });
+      // .setThumbnail('https://i.imgur.com/AfFp7pu.png') // replace with your bot icon if you have one
+      //.setFooter({ text: 'TTRPG Bot • Page 1 of 1', iconURL: 'https://i.imgur.com/AfFp7pu.png' })
+      .setTimestamp();
+
+    message.reply({ embeds: [helpEmbed] });
+
+    }
 
   // Basic ping response
   if (content === '!ping') {
